@@ -1,0 +1,11 @@
+.closed-toggle{
+    list-style: url('img/plus.png');
+}
+
+.opened-toggle{
+    list-style: url('img/collapse.png');
+}
+
+li>ul{
+    list-style: inside
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Exercice 3</title>
+    <style type="text/css">
+        .onglet {
+            background-color: #CCC;
+            padding: 2px;
+            margin: 2px;
+            border: 1px solid #000;
+            text-align: center;
+            cursor: pointer;
+            float: left;
+            display: block;
+            width: 120px;
+        }
+        
+        .contenu {
+            padding: 5px;
+            border: 1px solid #000;
+            width: 400px;
+            background-color: #39C;
+            color: #FFF;
+            clear: both;
+        }
+        
+        .contenuH {
+            display: block;
+            margin: 0;
+        }
+        
+        .contenuV {
+            padding: 5px;
+            margin: -83px 0 0 132px;
+            border: 1px solid #000;
+            width: 400px;
+            float: left;
+            background-color: #39C;
+            color: #FFF;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="Vertical" id="Change" /><br />
+    <div class="onglet" id="Onglet1">Onglet 1</div>
+    <div class="onglet" id="Onglet2">Onglet 2</div>
+    <div class="onglet" id="Onglet3">Onglet 3</div>
+    <div id="contenu1" class="contenu contenuH">
+        deded
+    </div>
+    <div id="contenu2" class="contenu contenuH">
+        azaz
+    </div>
+    <div id="contenu3" class="contenu contenuH">
+        uiui
+	</div>
+
+    <script src="../jquery.js"></script>
+	<script>
+       
+    const btn = $('#Change');
+    const tabs = $('.onglet');
+    const contents = $('.contenu');
+
+    // Comportement tabs
+
+    contents.hide();
+
+    tabs.on('click', function(){
+        let id = $(this).attr("id").slice(-1);
+        contents.hide();
+        $("#contenu"+id).show();
+    })
+
+    // Vertical <-> Horizontal
+
+    btn.on('click', function() {
+        let value = btn.val();
+
+        contents.toggleClass("contenuH contenuV");
+        if( value === "Vertical" ) {
+            btn.val( 'Horizontal' );
+            tabs.css({float: 'none'});
+        }
+        else {
+            btn.val( 'Vertical' );
+            tabs.css({float: 'left'});
+        }
+    })
+
+	</script>
+</body>
+
+</html>

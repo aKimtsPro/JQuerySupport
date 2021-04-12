@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Exercice 4</title>
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 10px;
+                font:80% Arial, sans-serif;
+            }
+            h2 {
+                clear:both;
+                font-size:160%;
+                font-weight:normal;
+                margin: 0;
+                padding-top: 10px;
+                padding-bottom: 15px;
+            }
+            a {
+                text-decoration:none;
+                color:black;
+            }
+            img {
+                border: 1px solid black;
+                display: block;
+            }
+            ul, li {
+                margin: 0;
+                padding: 0;
+            }
+            li {
+                list-style: none;
+                float: left;
+                display: inline;
+                margin-right: 10px;
+            }
+            #zoom {
+                position: absolute;
+                border: 1px solid #333;
+                background: #333;
+                padding: 3px;
+                display: none;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Effet de Zoom avec l&eacute;gende</h2>
+        <ul>
+            <li><a href="./images/Lighthouse.jpg" class="zoom" title="Phare"><img src="./images/pt_Lighthouse.jpg" alt="" /></a></li>
+            <li><a href="./images/photo3.jpg" class="zoom" title="lac"><img src="./images/pt_photo3.jpg" alt="" /></a></li>
+            <li><a href="./images/soleil.jpg" class="zoom" title="Coucher de soleil"><img src="./images/pt_soleil.jpg" alt="" /></a></li>
+        </ul>
+
+        <script src="../jquery.js"></script>
+        <script>
+
+            // const zoomables = document.getElementsByClassName("zoom");
+
+            // for( let zoomable of zoomab les ){
+
+            //     zoomable.onmouseenter = function( event ) {
+
+            //         const href = zoomable.getAttribute("href");
+            //         const title = zoomable.getAttribute("title");
+
+            //         const zoomContainer = document.createElement("div");
+            //         zoomContainer.setAttribute('id', 'zoom');
+            //         zoomContainer.style.display = 'inline';
+            //         zoomContainer.style.top = event.pageY + 5 + 'px';
+            //         zoomContainer.style.left = event.pageX + 5 + 'px';
+
+            //         const zoomImg = document.createElement("img");
+            //         zoomImg.setAttribute('src', href);
+            //         zoomImg.setAttribute('alt', title);
+
+            //         const zoomLabel = document.createElement("p");
+            //         zoomLabel.innerText = title;
+
+            //         document.getElementsByTagName('body')[0].appendChild(zoomContainer);
+            //         zoomContainer.appendChild(zoomImg);
+            //         zoomContainer.appendChild(zoomLabel);
+            //     }
+
+            //     zoomable.onmouseleave = function() {
+            //         console.log("bye")
+            //         document.getElementById('zoom').remove();
+            //     }
+
+            //     zoomable.onmousemove = function( event ) {
+            //         console.log("salut")
+            //         let zoomContainer = document.getElementById('zoom');
+            //         zoomContainer.style.top = event.pageY + 5 + 'px';
+            //         zoomContainer.style.left = event.pageX + 5 + 'px';
+            //     }
+
+            // }
+
+            // JQuery
+
+            const zoomables = $('.zoom');
+
+            zoomables.hover(
+                function(event) {
+                    const href = $( this ).attr('href');
+                    const title = $( this ).attr('title');
+                    $('body').append('<div id="zoom"><img src="'+ href + '" alt="'+ title +'"><p>'+ title +'</p></div>')
+                    $('#zoom')
+                        .css('top', event.pageY + 5 )
+                        .css('left', event.pageX + 5 )
+                        .show();
+                },
+                function(){
+                    $('#zoom').remove();
+                }
+            )
+
+            zoomables.on('mousemove', function(event) {
+                $('#zoom')
+                        .css('top', event.pageY + 5 )
+                        .css('left', event.pageX + 5 )
+            })
+
+        </script>
+    </body>
+</html>
